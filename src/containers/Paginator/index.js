@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Label from './Label'
+import Link from '../../components/Link'
 import {
   fetchCars,
   paginatorParamsSelector,
@@ -36,21 +36,21 @@ function Paginator({ params, fetchCars, loading }) {
 
   return (
     <div>
-      <Label pressed={current === first} onClick={handleOnFirstClick}>
+      <Link pressed={current === first} onClick={handleOnFirstClick}>
         First
-      </Label>
-      <Label pressed={!prev} onClick={handleOnPrevClick}>
+      </Link>
+      <Link pressed={!prev} onClick={handleOnPrevClick}>
         Previous
-      </Label>
+      </Link>
       <div>
         Page {current} of {last}
       </div>
-      <Label pressed={!next} onClick={handleOnNextClick}>
+      <Link pressed={!next} onClick={handleOnNextClick}>
         Next
-      </Label>
-      <Label pressed={current === last} onClick={handleOnLastClick}>
+      </Link>
+      <Link pressed={current === last} onClick={handleOnLastClick}>
         Last
-      </Label>
+      </Link>
     </div>
   )
 }

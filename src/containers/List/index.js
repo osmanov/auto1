@@ -2,10 +2,11 @@ import React, { useMemo } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
+import { withRouter } from 'react-router-dom'
+import Link from '../../components/Link'
 import { moduleName, fetchCars } from '../../ducks/cars'
 
-function List({ data, loading }) {
+const List = withRouter(({ history, data, loading }) => {
   if (loading) return <h1>{loading}</h1>
   return data.map(
     ({
@@ -27,11 +28,18 @@ function List({ data, loading }) {
           </div>
           <div>{fuelType}</div>
           <div>{color}</div>
+          <Link
+            onClick={() => {
+              history.push({ pathname: `/car/${stockNumber}` })
+            }}
+          >
+            View details
+          </Link>
         </div>
       )
     }
   )
-}
+})
 
 List.propTypes = {
   data: PropTypes.arrayOf(

@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        data: payload,
+        data: payload.car,
         error: null
       }
     case FETCH_CAR_ERROR:
