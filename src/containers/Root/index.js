@@ -9,11 +9,12 @@ import Filter from '../Filter'
 import Sort from '../Sort'
 import List from '../List'
 import Paginator from '../Paginator'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
   flex-direction: column;
 `
 
@@ -21,10 +22,12 @@ export default class Root extends React.Component {
   render() {
     return (
       <Wrapper>
+        <Header />
         <Filter />
         <Sort />
         <Paginator />
         <List />
+        <Footer />
         <GlobalStyle />
       </Wrapper>
     )

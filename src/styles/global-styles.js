@@ -9,22 +9,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+    font-family: 'Roboto', sans-serif;
     font-size:14px;
   }
 
   #root {
-    background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
   }
-
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
-  }
-
 `
 
 export default GlobalStyle
