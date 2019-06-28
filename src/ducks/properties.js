@@ -13,7 +13,7 @@ export const FETCH_PROPERTIES_ERROR = `${prefix}/FETCH_PROPERTIES_ERROR`
 
 const initialState = {
   loading: false,
-  data: [],
+  data: {},
   error: null
 }
 

@@ -13,16 +13,23 @@ export const FETCH_CARS_ERROR = `${prefix}/FETCH_CARS_ERROR`
 const initialState = {
   loading: false,
   data: [],
-  error: null
+  error: null,
+  sort: null,
+  filter: null
 }
 
 export const stateSelector = state => state[moduleName]
-
+export const buildURL = params => {
+  return Object.keys(params).reduce((acc, param) => {
+    return params[param] ? `${acc}&${param}=${params[param]}` : acc
+  }, `${apiURL}/cars?`)
+}
 export default function reducer(state = initialState, action) {
   const { type, payload, error } = action
   switch (type) {
     case FETCH_CARS_REQUEST:
-      return { ...state, loading: true, loaded: false }
+      const { sort, ...filter } = payload
+      return { ...state, loading: true, loaded: false, sort, filter }
     case FETCH_CARS_SUCCESS:
       const { cars, ...other } = payload
       return {
@@ -39,19 +46,19 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function fetchCars({ sort = 'asc', page = 1 } = {}) {
+export function fetchCars({ sort, page = 1, manufacturer, color } = {}) {
   return {
     type: FETCH_CARS_REQUEST,
-    payload: { sort, page }
+    payload: { sort, page, manufacturer, color }
   }
 }
 export const fetchCarsSaga = function*() {
   while (true) {
-    const action = yield take(FETCH_CARS_REQUEST)
-    console.log({ action })
-    const sort = ''
-    const page = ''
-    const requestURL = `${apiURL}/cars?sort=${sort}&page=${page}`
+    const { payload } = yield take(FETCH_CARS_REQUEST)
+    const requestURL = Object.keys(payload).reduce((acc, param) => {
+      return payload[param] ? `${acc}&${param}=${payload[param]}` : acc
+    }, `${apiURL}/cars?`)
+
     try {
       const data = yield call(request, requestURL)
       yield put({

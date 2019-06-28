@@ -5,18 +5,11 @@ import PropTypes from 'prop-types'
 import { moduleName, fetchProperties } from '../../ducks/properties'
 
 class HomePage extends React.Component {
-  componentWillMount() {
-    const { loaded, fetchProperties, fetchCars } = this.props
-    if (!loaded) {
-      fetchProperties()
-    }
-  }
-
   render() {
     return (
       <>
         <Filter />
-        <CarsList />
+        <List />
         <Sort />
       </>
     )

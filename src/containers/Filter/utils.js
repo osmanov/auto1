@@ -1,7 +1,7 @@
 export const getInitialValues = () => {
   return {
-    colors: { value: 'none', label: 'None' },
-    manufacturers: { value: 'none', label: 'None' }
+    colors: { value: '', label: 'None' },
+    manufacturers: { value: '', label: 'None' }
   }
 }
 export const getColorsOptions = colors => {

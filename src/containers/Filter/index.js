@@ -6,34 +6,41 @@ import { Form } from 'react-final-form'
 import Select from '../../components/Select'
 import Button from '../../components/Button'
 
-import { moduleName, fetchProperties } from '../../ducks/properties'
+import {
+  moduleName as moduleNameProps,
+  fetchProperties
+} from '../../ducks/properties'
+import { moduleName as moduleNameCars, fetchCars } from '../../ducks/cars'
 import {
   getInitialValues,
   getColorsOptions,
   getManufacturersOptions
 } from './utils'
 
+const initialValues = getInitialValues()
+
 class Filter extends React.Component {
   componentDidMount() {
     const { fetchProperties } = this.props
     fetchProperties()
   }
-
+  handleOnSubmit = values => {
+    const { fetchCars, sort } = this.props
+    const { colors, manufacturers } = values
+    fetchCars({ color: colors.value, manufacturer: manufacturers.value, sort })
+  }
   render() {
-    console.log(this.props.properties)
-    console.log(this.props.loading)
-    // return null
     const {
       properties: { colors, manufacturers },
       loading,
       loaded
     } = this.props
-    console.log({ loading })
+
     if (!loaded) return null
     return (
       <Form
-        initialValues={getInitialValues()}
-        onSubmit={values => console.log({ values })}
+        initialValues={initialValues}
+        onSubmit={this.handleOnSubmit}
         render={({ handleSubmit, reset, pristine, values }) => {
           return (
             <form onSubmit={handleSubmit}>
@@ -49,7 +56,13 @@ class Filter extends React.Component {
                 isDisabled={loading}
                 options={getManufacturersOptions(manufacturers)}
               />
-              <Button>Filter</Button>
+              <Button
+                onClick={handleSubmit}
+                pressed={loading}
+                disabled={loading}
+              >
+                Filter
+              </Button>
             </form>
           )
         }}
@@ -59,17 +72,19 @@ class Filter extends React.Component {
 }
 Filter.propTypes = {
   fetchProperties: PropTypes.func.isRequired,
+  fetchCars: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   properties: PropTypes.shape({
-    color: PropTypes.array,
+    colors: PropTypes.array,
     manufacturers: PropTypes.array
   }).isRequired
 }
 export default connect(
   state => ({
-    loading: state[moduleName].loading,
-    loaded: state[moduleName].loaded,
-    properties: state[moduleName].data
+    loading: state[moduleNameProps].loading || state[moduleNameCars].loading,
+    loaded: state[moduleNameProps].loaded,
+    properties: state[moduleNameProps].data,
+    sort: state[moduleNameCars].sort
   }),
-  { fetchProperties }
+  { fetchProperties, fetchCars }
 )(Filter)

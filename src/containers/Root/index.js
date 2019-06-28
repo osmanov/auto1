@@ -6,6 +6,8 @@ import GlobalStyle from '../../styles/global-styles'
 import { moduleName, fetchProperties } from '../../ducks/properties'
 import { fetchCars } from '../../ducks/cars'
 import Filter from '../Filter'
+import Sort from '../Sort'
+import List from '../List'
 const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
@@ -19,6 +21,8 @@ export default class Root extends React.Component {
     return (
       <Wrapper>
         <Filter />
+        <Sort />
+        <List />
         <GlobalStyle />
       </Wrapper>
     )
