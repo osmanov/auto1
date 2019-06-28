@@ -17,22 +17,22 @@ function Paginator({ params, fetchCars, loading }) {
   const handleOnFirstClick = useCallback(() => {
     const isClickable = !loading && current !== first
     isClickable && fetchCars({ ...filter, sort, page: first })
-  }, [filter, first, sort, current, loading])
+  }, [filter, first, sort, current, loading, fetchCars])
 
   const handleOnNextClick = useCallback(() => {
     const isClickable = !loading && next
     isClickable && fetchCars({ ...filter, sort, page: next })
-  }, [filter, next, sort, loading])
+  }, [filter, next, sort, loading, fetchCars])
 
   const handleOnPrevClick = useCallback(() => {
     const isClickable = !loading && prev
     isClickable && fetchCars({ ...filter, sort, page: prev })
-  }, [filter, prev, sort, loading])
+  }, [filter, prev, sort, loading, fetchCars])
 
   const handleOnLastClick = useCallback(() => {
     const isClickable = !loading && current !== last
     isClickable && fetchCars({ ...filter, sort, page: last })
-  }, [filter, last, sort, current, loading])
+  }, [filter, last, sort, current, loading, fetchCars])
 
   return (
     <div>
