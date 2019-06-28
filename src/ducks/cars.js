@@ -15,15 +15,50 @@ const initialState = {
   data: [],
   error: null,
   sort: null,
-  filter: null
+  filter: null,
+  totalPageCount: 0
 }
 
 export const stateSelector = state => state[moduleName]
+export const filterSelector = state => state[moduleName].filter
+export const totalPageCountSelector = state => state[moduleName].totalPageCount
+export const sortSelector = state => state[moduleName].sort
+
+export const currentPageSelector = createSelector(
+  filterSelector,
+  filter => {
+    return filter ? filter.page : 1
+  }
+)
+
+export const paginatorParamsSelector = createSelector(
+  currentPageSelector,
+  totalPageCountSelector,
+  filterSelector,
+  sortSelector,
+  (current, totalCount, filter, sort) => {
+    const nextCandidate = current + 1
+    const prevCandidate = current - 1
+    console.log({
+      nextCandidate
+    })
+    return {
+      next: totalCount >= nextCandidate ? nextCandidate : null,
+      prev: prevCandidate || null,
+      current,
+      first: 1,
+      last: totalCount,
+      sort,
+      filter: filter || {}
+    }
+  }
+)
 export const buildURL = params => {
   return Object.keys(params).reduce((acc, param) => {
     return params[param] ? `${acc}&${param}=${params[param]}` : acc
   }, `${apiURL}/cars?`)
 }
+
 export default function reducer(state = initialState, action) {
   const { type, payload, error } = action
   switch (type) {
@@ -47,6 +82,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export function fetchCars({ sort, page = 1, manufacturer, color } = {}) {
+  console.log({ page })
   return {
     type: FETCH_CARS_REQUEST,
     payload: { sort, page, manufacturer, color }

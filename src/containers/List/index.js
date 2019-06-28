@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { moduleName, fetchCars } from '../../ducks/cars'
 
-export function List({ data, loading }) {
+function List({ data, loading }) {
   if (loading) return <h1>{loading}</h1>
   return data.map(
     ({

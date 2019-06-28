@@ -8,6 +8,7 @@ import { fetchCars } from '../../ducks/cars'
 import Filter from '../Filter'
 import Sort from '../Sort'
 import List from '../List'
+import Paginator from '../Paginator'
 const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
@@ -22,6 +23,7 @@ export default class Root extends React.Component {
       <Wrapper>
         <Filter />
         <Sort />
+        <Paginator />
         <List />
         <GlobalStyle />
       </Wrapper>
