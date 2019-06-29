@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { tango, ochre } from '../styles/colors'
+import { tango, ochre, gallery } from '../styles/colors'
 
 const Button = styled.button`
   background: ${ochre};
@@ -7,6 +7,11 @@ const Button = styled.button`
   width: 128px;
   height: 32px;
   border: none;
-  color: white;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 2px;
+  color: #fff;
 `
 export default Button

@@ -14,7 +14,7 @@ export default function LoadingItem() {
       <Section>
         <Title data-loading />
         <Span data-loading />
-        <Span data-loading />
+        <Span data-loading width="75" />
       </Section>
     </Wrapper>
   )

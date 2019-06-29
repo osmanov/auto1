@@ -4,7 +4,7 @@ import { gallery } from '../../styles/colors'
 const Span = styled.span`
   font-size: 0.85rem;
   text-transform: uppercase;
-  display: block;
+  //display: block;
   text-transform: ${props => props.uppercase || `capitalize`};
   display: ${props => props.block || `inline`};
   > div {
@@ -15,9 +15,14 @@ const Span = styled.span`
     if (props['data-loading']) {
       return css`
         background: ${gallery};
-        width: 100%;
-        display: block;
         height: 14px;
+      `
+    }
+  }}
+  ${props => {
+    if (props.width) {
+      return css`
+        width: ${props.width}px;
       `
     }
   }}
