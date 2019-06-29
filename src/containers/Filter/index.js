@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import Select from '../../components/Select'
-import Button from '../../components/Button'
-
+import Button from './Button'
+import { gallery } from '../../styles/colors'
 import {
   moduleName as moduleNameProps,
   fetchProperties
@@ -18,7 +18,11 @@ import {
 } from './utils'
 
 const initialValues = getInitialValues()
-
+const Wrapper = styled.div`
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid ${gallery};
+`
 class Filter extends React.Component {
   componentDidMount() {
     const { fetchProperties } = this.props
@@ -32,41 +36,43 @@ class Filter extends React.Component {
   render() {
     const {
       properties: { colors, manufacturers },
-      loading,
-      loaded
+      loading
     } = this.props
 
-    if (!loaded) return null
     return (
-      <Form
-        initialValues={initialValues}
-        onSubmit={this.handleOnSubmit}
-        render={({ handleSubmit, reset, pristine, values }) => {
-          return (
-            <form onSubmit={handleSubmit}>
-              <Select
-                label="Color"
-                name="colors"
-                isDisabled={loading}
-                options={getColorsOptions(colors)}
-              />
-              <Select
-                label="Manufacturers"
-                name="manufacturers"
-                isDisabled={loading}
-                options={getManufacturersOptions(manufacturers)}
-              />
-              <Button
-                onClick={handleSubmit}
-                pressed={loading}
-                disabled={loading}
-              >
-                Filter
-              </Button>
-            </form>
-          )
-        }}
-      />
+      <Wrapper>
+        <Form
+          initialValues={initialValues}
+          onSubmit={this.handleOnSubmit}
+          render={({ handleSubmit, reset, pristine, values }) => {
+            return (
+              <form onSubmit={handleSubmit}>
+                <Select
+                  label="Color"
+                  name="colors"
+                  isDisabled={loading}
+                  options={colors && getColorsOptions(colors)}
+                />
+                <Select
+                  label="Manufacturers"
+                  name="manufacturers"
+                  isDisabled={loading}
+                  options={
+                    manufacturers && getManufacturersOptions(manufacturers)
+                  }
+                />
+                <Button
+                  onClick={handleSubmit}
+                  pressed={loading}
+                  disabled={loading}
+                >
+                  Filter
+                </Button>
+              </form>
+            )
+          }}
+        />
+      </Wrapper>
     )
   }
 }
@@ -82,7 +88,6 @@ Filter.propTypes = {
 export default connect(
   state => ({
     loading: state[moduleNameProps].loading || state[moduleNameCars].loading,
-    loaded: state[moduleNameProps].loaded,
     properties: state[moduleNameProps].data,
     sort: state[moduleNameCars].sort
   }),

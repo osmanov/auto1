@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+import { tundora } from './colors'
 const GlobalStyle = createGlobalStyle`
   html,
   body {
@@ -11,7 +11,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
     font-family: 'Roboto', sans-serif;
-    font-size:14px;
+    font-size: 14px;
+    color: ${tundora};
   }
 
   #root {

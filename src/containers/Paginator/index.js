@@ -11,6 +11,26 @@ import {
   moduleName
 } from '../../ducks/cars'
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  > div:first-child {
+    span {
+      margin-left: 24px;
+    }
+  }
+  > div:last-child {
+    span {
+      margin-right: 24px;
+    }
+  }
+  > div {
+    margin-right: 24px;
+  }
+  margin: 24px 0;
+`
 function Paginator({ params, fetchCars, loading }) {
   const { current, last, next, sort, filter, first, prev } = params
 
@@ -35,23 +55,27 @@ function Paginator({ params, fetchCars, loading }) {
   }, [filter, last, sort, current, loading, fetchCars])
 
   return (
-    <div>
-      <Link pressed={current === first} onClick={handleOnFirstClick}>
-        First
-      </Link>
-      <Link pressed={!prev} onClick={handleOnPrevClick}>
-        Previous
-      </Link>
+    <Wrapper>
+      <div>
+        <Link pressed={current === first} onClick={handleOnFirstClick}>
+          First
+        </Link>
+        <Link pressed={!prev} onClick={handleOnPrevClick}>
+          Previous
+        </Link>
+      </div>
       <div>
         Page {current} of {last}
       </div>
-      <Link pressed={!next} onClick={handleOnNextClick}>
-        Next
-      </Link>
-      <Link pressed={current === last} onClick={handleOnLastClick}>
-        Last
-      </Link>
-    </div>
+      <div>
+        <Link pressed={!next} onClick={handleOnNextClick}>
+          Next
+        </Link>
+        <Link pressed={current === last} onClick={handleOnLastClick}>
+          Last
+        </Link>
+      </div>
+    </Wrapper>
   )
 }
 
@@ -63,8 +87,8 @@ Paginator.propTypes = {
     first: PropTypes.number,
     last: PropTypes.number
   }).isRequired,
-  sort: PropTypes.string.isRequired,
-  filter: PropTypes.object.isRequired,
+  sort: PropTypes.string,
+  filter: PropTypes.object,
   loading: PropTypes.bool.isRequired
 }
 export default connect(

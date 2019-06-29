@@ -31,9 +31,9 @@ export default class Root extends React.Component {
             <Route path="/car/:stockNumber" component={CarPage} />
             <Route component={NotFoundPage} />
           </Switch>
-          <GlobalStyle />
         </Wrapper>
         <Footer />
+        <GlobalStyle />
       </>
     )
   }

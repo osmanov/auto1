@@ -39,9 +39,7 @@ export const paginatorParamsSelector = createSelector(
   (current, totalCount, filter, sort) => {
     const nextCandidate = current + 1
     const prevCandidate = current - 1
-    console.log({
-      nextCandidate
-    })
+
     return {
       next: totalCount >= nextCandidate ? nextCandidate : null,
       prev: prevCandidate || null,
@@ -64,7 +62,7 @@ export default function reducer(state = initialState, action) {
   switch (type) {
     case FETCH_CARS_REQUEST:
       const { sort, ...filter } = payload
-      return { ...state, loading: true, loaded: false, sort, filter }
+      return { ...state, loading: true, sort, filter }
     case FETCH_CARS_SUCCESS:
       const { cars, ...other } = payload
       return {

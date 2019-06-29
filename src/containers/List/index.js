@@ -1,45 +1,45 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
-import Link from '../../components/Link'
-import { moduleName, fetchCars } from '../../ducks/cars'
 
-const List = withRouter(({ history, data, loading }) => {
-  if (loading) return <h1>{loading}</h1>
-  return data.map(
-    ({
-      stockNumber,
-      mileage,
-      fuelType,
-      color,
-      manufacturerName,
-      modelName
-    }) => {
-      return (
-        <div>
-          <h1>
-            {manufacturerName}-{modelName}
-          </h1>
-          <div>stock #{stockNumber}</div>
-          <div>
-            {mileage.number} {mileage.unit}
-          </div>
-          <div>{fuelType}</div>
-          <div>{color}</div>
-          <Link
-            onClick={() => {
-              history.push({ pathname: `/car/${stockNumber}` })
-            }}
-          >
-            View details
-          </Link>
-        </div>
-      )
-    }
+import SubTitle from './SubTitle'
+import SortPortal from '../Sort/Portal'
+import { moduleName } from '../../ducks/cars'
+import Item from './Item'
+import LoadingItem from './LoadingItem'
+
+const renderSubTitle = ({ data, totalCarsCount, loading }) => {
+  return (
+    <SortPortal>
+      <SubTitle>
+        {loading || !data.length
+          ? 'Loading...'
+          : `Showing ${data.length} of ${totalCarsCount} results`}
+      </SubTitle>
+    </SortPortal>
   )
-})
+}
+const List = ({ data, loading, totalCarsCount }) => {
+  if (loading) {
+    return (
+      <>
+        {renderSubTitle({ data, totalCarsCount, loading })}
+        {[...Array(10).keys()].map(key => {
+          return <LoadingItem key={key} />
+        })}
+      </>
+    )
+  }
+
+  return (
+    <>
+      {renderSubTitle({ data, totalCarsCount, loading })}
+      {data.map((item, index) => {
+        return <Item key={`${item.stockNumber}${index}`} {...item} />
+      })}
+    </>
+  )
+}
 
 List.propTypes = {
   data: PropTypes.arrayOf(
@@ -55,9 +55,11 @@ List.propTypes = {
       pictureUrl: PropTypes.string.isRequired,
       stockNumber: PropTypes.number
     })
-  )
+  ),
+  totalCarsCount: PropTypes.number
 }
 export default connect(state => ({
   loading: state[moduleName].loading,
-  data: state[moduleName].data
+  data: state[moduleName].data,
+  totalCarsCount: state[moduleName].totalCarsCount
 }))(List)
