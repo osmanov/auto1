@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import Favorites from '../Favorites'
 import { moduleName, fetchCar } from '../../ducks/car'
 
 function CarPage({ match, fetchCar, error, loading, data }) {
@@ -32,6 +33,7 @@ function CarPage({ match, fetchCar, error, loading, data }) {
         </div>
         <div>{fuelType}</div>
         <div>{color}</div>
+        <Favorites />
       </div>
     </>
   )
