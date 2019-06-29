@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import Span from './Span'
+import Span from '../../components/Span'
 import Title from './Title'
 import Section from './Section'
-import Picture from './Picture'
+import Picture from '../../components/Picture'
 import Link from '../../components/Link'
 import Wrapper from './Wrapper'
 

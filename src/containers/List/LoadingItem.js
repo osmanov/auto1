@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Span from './Span'
+import Span from '../../components/Span'
 import Title from './Title'
 import Section from './Section'
-import Picture from './Picture'
-import Link from '../../components/Link'
+import Picture from '../../components/Picture'
 import Wrapper from './Wrapper'
 
 export default function LoadingItem() {

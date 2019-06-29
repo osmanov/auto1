@@ -12,7 +12,7 @@ export const FETCH_CAR_ERROR = `${prefix}/FETCH_CAR_ERROR`
 
 const initialState = {
   loading: false,
-  data: [],
+  data: {},
   error: null
 }
 
