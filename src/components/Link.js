@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { ochre, tango } from '../styles/colors'
-const Label = styled.span`
+const Link = styled.span`
   color: ${ochre};
   color: ${props => props.pressed || `${tango}`};
   ${props => {
@@ -14,4 +14,4 @@ const Label = styled.span`
     }
   }}
 `
-export default Label
+export default Link

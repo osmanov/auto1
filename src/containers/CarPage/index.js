@@ -2,13 +2,14 @@ import React, { useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Body from './Body'
-import H1 from './H1'
+import H1 from '../../components/H1'
 import Text from './Text'
 import Description from './Description'
 import Span from '../../components/Span'
 import Favorites from '../Favorites'
 import Picture from '../../components/Picture'
 import { moduleName, fetchCar } from '../../ducks/car'
+import NotFoundPage from '../NotFoundPage'
 
 function CarPage({ match, fetchCar, error, loading, data }) {
   const { stockNumber } = match.params
@@ -29,7 +30,7 @@ function CarPage({ match, fetchCar, error, loading, data }) {
   }, [fetchByStockNumber])
 
   if (error) {
-    return <h1>{error.message}</h1>
+    return <NotFoundPage />
   }
   if (loading || !Object.keys(data).length) {
     return <h1>Loading...</h1>
