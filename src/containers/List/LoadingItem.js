@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Span from '../../components/Span'
 import Title from './Title'
 import Section from './Section'

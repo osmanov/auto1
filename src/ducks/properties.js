@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect'
 import { all, call, put, take } from 'redux-saga/effects'
 import { fetchCars } from './cars'
 import { appName, apiURL } from '../config'

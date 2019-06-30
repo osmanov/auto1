@@ -26,7 +26,6 @@ const customStyles = {
   option: (provided, { isFocused, isSelected }) => {
     return {
       ...provided,
-      color: tundora,
       backgroundColor: isSelected || isFocused ? tango : null,
       color: isSelected || isFocused ? '#fff' : null,
       ':active': {

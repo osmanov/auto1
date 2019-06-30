@@ -20,7 +20,7 @@ const NotFoundPage = withRouter(({ history }) => {
       <H1>404 - Not Found</H1>
       <Span>Sorry, the page you are looking for does not exist.</Span>
       <Span>
-        You can always go back to the{' '}
+        You can always go back to the&nbsp;
         <Link
           onClick={() => {
             history.push({ pathname: `/` })

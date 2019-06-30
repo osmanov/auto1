@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import { OnChange } from 'react-final-form-listeners'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
