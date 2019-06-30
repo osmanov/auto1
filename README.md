@@ -26,3 +26,4 @@
 - `Final-form`
 - `Styled-components`
 - `Jest`
+- `ducks` [pattern](https://github.com/erikras/ducks-modular-redux) 🦆

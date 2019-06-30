@@ -6,6 +6,7 @@ import H1 from '../../components/H1'
 import Text from './Text'
 import Description from './Description'
 import Span from '../../components/Span'
+import Loading from '../../components/Loading'
 import Favorites from '../Favorites'
 import Picture from '../../components/Picture'
 import { moduleName, fetchCar } from '../../ducks/car'
@@ -33,7 +34,7 @@ function CarPage({ match, fetchCar, error, loading, data }) {
     return <NotFoundPage />
   }
   if (loading || !Object.keys(data).length) {
-    return <h1>Loading...</h1>
+    return <Loading />
   }
   return (
     <>
