@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer should get cars 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "color": "yellow",
+      "fuelType": "Petrol",
+      "manufacturerName": "BMW",
+      "mileage": Object {},
+      "modelName": "X5",
+      "pictureUrl": "http://localhost:3001/car.svg",
+      "stockNumber": 10025,
+    },
+  ],
+  "error": null,
+  "filter": null,
+  "loading": false,
+  "sort": null,
+  "totalPageCount": 0,
+}
+`;
+
+exports[`saga should get cars 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "pattern": "auto1/cars/FETCH_CARS_REQUEST",
+  },
+  "type": "TAKE",
+}
+`;
+
+exports[`saga should get cars 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "http://localhost:3001/cars?&page=1",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

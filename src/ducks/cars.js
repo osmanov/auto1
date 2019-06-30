@@ -10,7 +10,7 @@ export const FETCH_CARS_REQUEST = `${prefix}/FETCH_CARS_REQUEST`
 export const FETCH_CARS_SUCCESS = `${prefix}/FETCH_CARS_SUCCESS`
 export const FETCH_CARS_ERROR = `${prefix}/FETCH_CARS_ERROR`
 
-const initialState = {
+export const initialState = {
   loading: false,
   data: [],
   error: null,
@@ -80,7 +80,6 @@ export default function reducer(state = initialState, action) {
 }
 
 export function fetchCars({ sort, page = 1, manufacturer, color } = {}) {
-  console.log({ page })
   return {
     type: FETCH_CARS_REQUEST,
     payload: { sort, page, manufacturer, color }

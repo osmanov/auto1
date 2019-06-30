@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer should get properties 1`] = `
+Object {
+  "data": Object {
+    "colors": Array [
+      "red",
+      "blue",
+      "green",
+    ],
+    "manufacturers": Array [
+      Object {
+        "models": Object {
+          "name": "Avenger",
+        },
+        "name": "Dodge",
+      },
+    ],
+  },
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`saga should get properties and start fetch cars 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "pattern": "auto1/properties/FETCH_PROPERTIES_REQUEST",
+  },
+  "type": "TAKE",
+}
+`;
+
+exports[`saga should get properties and start fetch cars 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": true,
+  "payload": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "http://localhost:3001/colors",
+        ],
+        "context": null,
+        "fn": [Function],
+      },
+      "type": "CALL",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "http://localhost:3001/manufacturers",
+        ],
+        "context": null,
+        "fn": [Function],
+      },
+      "type": "CALL",
+    },
+  ],
+  "type": "ALL",
+}
+`;
+
+exports[`saga should get properties and start fetch cars 3`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "action": Object {
+      "payload": Object {
+        "0": Array [
+          "red",
+          "blue",
+          "green",
+        ],
+        "1": Array [
+          Object {
+            "models": Object {
+              "name": "Avenger",
+            },
+            "name": "Dodge",
+          },
+        ],
+      },
+      "type": "auto1/properties/FETCH_PROPERTIES_SUCCESS",
+    },
+    "channel": undefined,
+  },
+  "type": "PUT",
+}
+`;
+
+exports[`saga should not get properties 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "pattern": "auto1/properties/FETCH_PROPERTIES_REQUEST",
+  },
+  "type": "TAKE",
+}
+`;
+
+exports[`saga should not get properties 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": true,
+  "payload": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "http://localhost:3001/colors",
+        ],
+        "context": null,
+        "fn": [Function],
+      },
+      "type": "CALL",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "http://localhost:3001/manufacturers",
+        ],
+        "context": null,
+        "fn": [Function],
+      },
+      "type": "CALL",
+    },
+  ],
+  "type": "ALL",
+}
+`;
