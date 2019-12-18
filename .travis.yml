@@ -1,9 +1,15 @@
+sudo: false
 language: node_js
+cache:
+  directories:
+    - ~/.npm
 notifications:
   email: false
+node_js: '12'
 install:
   - npm install -g codecov
 script:
-  - npm test && codecov
+  - npm install
+after_script: npx codecov@3
 branches:
   only: master
