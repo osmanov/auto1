@@ -1,4 +1,4 @@
-// http://chir.ag/projects/name-that-color/ this is how i choose the color's name
+// http://chir.ag/projects/name-that-color/ this is how we choose color's name
 
 export const { gallery, tundora, ochre, tango } = {
   gallery: '#EDEDED',
