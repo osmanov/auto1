@@ -1,5 +1,7 @@
 # 🚗 Niva
 
+[![codecov](https://codecov.io/gh/osmanov/niva/branch/master/graph/badge.svg)](https://codecov.io/gh/osmanov/niva)
+
 ## Features:
 
 - List all available cars (with pagination)
