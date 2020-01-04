@@ -11,5 +11,5 @@ test('render form with title,sbm btn,content,tags', () => {
   getByLabelText(/content/i)
   const submitBtn = getByText(/submit/i)
   fireEvent.click(submitBtn)
-  expect(submitBtn).isDisabled()
+  expect(submitBtn).toBeDisabled()
 })
