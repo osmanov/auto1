@@ -1,7 +1,9 @@
 import React from 'react'
+import { Redirect } from 'react-router'
 import { savePost } from '../api'
 function Editor() {
   const [isDisabled, setIsDisabled] = React.useState(false)
+  const [condition, setCondition] = React.useState(false)
   function handleSubmit(e) {
     e.preventDefault()
     setIsDisabled(true)
@@ -10,11 +12,16 @@ function Editor() {
     const newPost = {
       title: title.value,
       content: content.value,
-      tags: tags.value.split()
+      tags: tags.value,
+      date: new Date().toISOString()
     }
     savePost(newPost).then(() => {
       setIsDisabled(false)
+      setCondition(true)
     })
+  }
+  if (condition) {
+    return <Redirect to="/" />
   }
   return (
     <form onSubmit={handleSubmit}>
