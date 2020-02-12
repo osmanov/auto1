@@ -19,3 +19,14 @@ test('we can navigate', () => {
   fireEvent.click(about)
   expect(getByRole('heading')).toHaveTextContent(/about/i)
 })
+test('landing on a bad page 404', () => {
+  const history = createMemoryHistory({
+    initialEntries: ['/weird']
+  })
+  const { getByText, getByRole } = render(
+    <Router history={history}>
+      <Main />
+    </Router>
+  )
+  expect(getByRole('heading')).toHaveTextContent(/404/i)
+})
